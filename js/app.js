@@ -30,9 +30,9 @@ const dropTile = e => {
 }
 
 const createTile = (svgname, rotation) => {
-	const img = $(`<img class="grid-stack-item-content" src='tiles/${svgname}'/>`);
-	const tile = $(`<div class="grid-stack-item"></div>`);
-	img.on('contextmenu', rotateTileClick).on( "dblclick", dropTile )
+	const tile = $('<div/>').addClass('grid-stack-item');
+	const img = $(`<img src='tiles/${svgname}'/>`).addClass('grid-stack-item-content')
+	.on('contextmenu', rotateTileClick).on( "dblclick", dropTile )
 	.css({'transform' : `rotate(${rotation*90}deg)`})
 	.attr('rot',rotation);
 	tile.append(img)
@@ -40,12 +40,12 @@ const createTile = (svgname, rotation) => {
 }
 
 const savePNG = () => {
-	$("#canvasbox").addClass("pngback");
-	$("img.grid-stack-item-content").addClass("fblue");
+	//$("#canvasbox").addClass("pngback");
+	//$("img.grid-stack-item-content").addClass("fblue");
 	domtoimage.toPng($("#canvasbox")[0])
 		.then(dataUrl => {
-			$("#canvasbox").removeClass("pngback");
-			$("img.grid-stack-item-content").removeClass("fblue");
+			//$("#canvasbox").removeClass("pngback");
+			//$("img.grid-stack-item-content").removeClass("fblue");
 			const a = document.createElement('a')
 			a.setAttribute('download', 'mystamp.png')
 			a.setAttribute('href', dataUrl)
