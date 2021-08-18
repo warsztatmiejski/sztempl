@@ -217,6 +217,9 @@ const importHash = () => {
 	}
 }
 
+const colorPicker = () => { 
+
+};
 
 const moveLeft = () => moveTiles('x', -1);
 const moveRight = () => moveTiles('x', 1);
@@ -224,10 +227,6 @@ const moveUp = () => moveTiles('y',- 1);
 const moveDown = () => moveTiles('y', 1);
 const rotateCW = () => rotate(1);
 const rotateCCW = () => rotate(-1);
-
-const colorPicker = () => { 
-
-};
 
 let canvasbox = null;
 let blockbox = null;
