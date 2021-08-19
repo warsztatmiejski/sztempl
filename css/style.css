@@ -25,7 +25,8 @@ body {
 
 #main {
   clear: both;
-  width: 602px;
+  width: 585px;
+  z-index: 100;
 }
 
 .menuitem {
@@ -78,24 +79,65 @@ border: 1px solid #bdb463;
   background-color: #fff;
 }
 
-.fblue {
-  filter: invert(43%) sepia(99%) saturate(1418%) hue-rotate(161deg) brightness(94%) contrast(101%);
-}
 
-.grid-stack-item-content { 
+.grid-stack-item { 
   overflow: hidden;
 }
 
-.grid-stack-item-content:hover { 
-  background-color: #cec576; 
+.grid-stack-item-content { 
+  overflow: hidden !important;
 }
 
-#canvasbox>div>img.grid-stack-item-content { 
+svg { 
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+.grid-stack-item:hover { 
+  opacity: 0.8;
+}
+
+#canvasbox>div>svg { 
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.select2-container {
-  height: 20px !important;
+#colorpicker {
+  position: absolute;
+  left: 470px;
+  top:34px;
+  z-index: 1000;
+  border: #6e6c53 1px solid;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #333;
+  background: #cec576;
+  padding: 8px;
+  overflow: auto;
+  display: none;
+}
+
+div.paintblock:nth-child(6n+1) {
+  clear: left;
+}
+
+.paintblock {
+  position: relative;
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 0 -1px -1px 0;
+  border: #000 1px solid;
+  cursor:url(eyedropper.png) 0 15, auto;
+  overflow: auto;
+}
+
+#colorpicker > hr {
+  float: left;
+  clear: both;
+  margin: 9px 0 8px 0;
+  height: 1px;
+  background-color:rgb(175, 161, 96);
+  width: 100%;
 }
