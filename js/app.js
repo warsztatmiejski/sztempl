@@ -188,26 +188,6 @@ async function LoadAssets () {
 	initBoard();
 }
 
-async function loadSVG (name) {
-	return await new Promise((resolve, reject) => {
-		const fname = `tiles/${name}.svg`;
-		return $.get(fname, null, 'xml').done(data => {
-			let $svg = jQuery(data).find('svg');
-			$svg = $svg.removeAttr('xmlns').attr({name});
-			resolve($svg);
-		}).fail(reject);
-	});
-}
-
-async function LoadAssets () {
-	tilesDefinition = await loadTiles();	
-	for(i in tilesDefinition) {
-		const tile = tilesDefinition[i];
-		tile.svg = await loadSVG(tile.name, i);
-	}
-	initBoard();
-}
-
 const repopulateTiles = () => {
 	for (tile of tilesDefinition) {
 		let count = 0;
