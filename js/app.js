@@ -1,10 +1,80 @@
 const GRIDSIZE = 7;
 
 const paintColors = [
-	{name:'black', hex:'#000', class:'cblack'},
-	{name:'red', hex:'#F00', class:'cred'},
-	{name:'green', hex:'#0F0', class:'cgreen'},
-	{name:'blue', hex:'#00F', class:'cblue'}
+/*
+	{name:'biel', hex:'#e7eff1', code: '191'},
+	{name:'maślany', hex:'#', code: '199'},
+	{name:'jasny żółty', hex:'#', code: '200'},
+	{name:'ciemny żółty', hex:'#', code: '201'},
+	{name:'cielisty', hex:'#', code: '198'},
+	{name:'łososiowy', hex:'#', code: '256'},
+	{name:'pomarańczowy', hex:'#', code: '203'},
+	{name:'czerwony jasny', hex:'#', code: '249'},
+	{name:'czerwony', hex:'#', code: '250'},
+	{name:'fuksja', hex:'#', code: '253'},
+	{name:'karmin', hex:'#', code: '251'},
+	{name:'bordowy', hex:'#', code: '254'},
+	{name:'róż', hex:'#', code: '255'},
+	{name:'lawenda', hex:'#', code: '301'},
+	{name:'fiolet', hex:'#', code: '300'},
+	{name:'granat', hex:'#', code: '350'},
+	{name:'niebieski', hex:'#', code: '352'},
+	{name:'błękit', hex:'#', code: '349'},
+	{name:'błękit jasny', hex:'#', code: '348'},
+	{name:'turkus', hex:'#', code: '351'},
+	{name:'szary', hex:'#', code: '499'},
+	{name:'zieleń ciemna', hex:'#', code: '400'},
+	{name:'zieleń jasna', hex:'#', code: '401'},
+	{name:'mięta', hex:'#', code: '399'},
+	{name:'oliwka', hex:'#', code: '403'},
+	{name:'sahara', hex:'#', code: '454'},
+	{name:'brąz jasny', hex:'#', code: '451'},
+	{name:'brąz', hex:'#', code: '450'},
+	{name:'czarny', hex:'#', code: '500'},
+
+	{name:'zielony fluo', hex:'#', code: '0400'},
+	{name:'żółty fluo', hex:'#', code: '0200'},
+	{name:'pomarańcz fluo', hex:'#', code: '0201'},
+	{name:'czerwień fluo', hex:'#', code: '0250'},
+	{name:'różowy fluo', hex:'#', code: '0252'}
+*/
+
+	{name:'white', hex:'#ffffff', code: '191'},
+	{name:'butter', hex:'#fbf470', code: '199'},
+	{name:'light yellow', hex:'#fed000', code: '200'},
+	{name:'dark yellow', hex:'#ffa600', code: '201'},
+	{name:'flesh yellow', hex:'#f4c09b', code: '198'},
+	{name:'salmon', hex:'#ff9855', code: '256'},
+	{name:'orange', hex:'#f81f00', code: '203'},
+	{name:'bright red', hex:'#d10000', code: '249'},
+	{name:'red', hex:'#ba0001', code: '250'},
+	{name:'fuchsia', hex:'#900000', code: '253'},
+	{name:'carmine', hex:'#690000', code: '251'},
+	{name:'maroon', hex:'#4c0000', code: '254'},
+	{name:'pink', hex:'#ff6ce1', code: '255'},
+	{name:'lavender', hex:'#a168ad', code: '301'},
+	{name:'violet', hex:'#481268', code: '300'},
+	{name:'dark blue', hex:'#01004c', code: '350'},
+	{name:'blue', hex:'#0152e1', code: '352'},
+	{name:'azure', hex:'#0269df', code: '349'},
+	{name:'light blue', hex:'#40d5eb', code: '348'},
+	{name:'turquoise', hex:'#006488', code: '351'},
+	{name:'grey', hex:'#1d262b', code: '499'},
+	{name:'dark green', hex:'#033a3d', code: '400'},
+	{name:'light green', hex:'#01a300', code: '401'},
+	{name:'mint', hex:'#81e487', code: '399'},
+	{name:'olive', hex:'#585b00', code: '403'},
+	{name:'sahara', hex:'#af7801', code: '454'},
+	{name:'light brown', hex:'#840000', code: '451'},
+	{name:'brown', hex:'#330300', code: '450'},
+	{name:'black', hex:'#000000', code: '500'},
+
+	{name:'fluo green', hex:'#00e701', code: '0400'},
+	{name:'fluo yellow', hex:'#ede101', code: '0200'},
+	{name:'fluo orange', hex:'#ff6d00', code: '0201'},
+	{name:'fluo red', hex:'#fe0906', code: '0250'},
+	{name:'fluo pink', hex:'#ff0042', code: '0252'}
+
 ];
 
 const rotateTile = (tile, dir) => {
@@ -31,11 +101,14 @@ const dropTile = e => {
 
 const createTile = (svgname, rotation) => {
 	const tile = $('<div/>').addClass('grid-stack-item');
-	const img = $(`<img src='tiles/${svgname}'/>`).addClass('grid-stack-item-content')
+	//const img = $(`<object type='image/svg+xml' data='tiles/${svgname}'></object>`)
+	const img = $(`<img src='tiles/${svgname}'>`)
+	.addClass('grid-stack-item-content')
 	.on('contextmenu', rotateTileClick).on( "dblclick", dropTile )
 	.css({'transform' : `rotate(${rotation*90}deg)`})
 	.attr('rot',rotation);
 	tile.append(img)
+
 	return tile[0];
 }
 
@@ -74,6 +147,7 @@ const repopulateTiles = (callback) => {
 		if (callback) {
 			callback();
 		}
+		
 	});
 }
 
@@ -217,9 +291,28 @@ const importHash = () => {
 	}
 }
 
-const colorPicker = () => { 
-
+const toggleColorPicker = () => { 
+	$('#colorpicker').slideToggle(100);
 };
+
+const setCanvasColor = (color) => {
+	//console.log(color.hex)
+	$('#canvasbox').css({"background":color.hex});
+}
+
+const pickPaintColor = e => {
+	const block = e.target;
+	setPaintColor({name:block.title, hex:block.hex});
+	toggleColorPicker();
+}
+
+const pickCanvasColor = e => {
+	e.preventDefault();
+	e.stopPropagation();
+	const block = $(e.target);
+	setCanvasColor({name:block.attr('title'), hex:block.attr('hex')});
+	toggleColorPicker();
+}
 
 const moveLeft = () => moveTiles('x', -1);
 const moveRight = () => moveTiles('x', 1);
@@ -260,7 +353,8 @@ $(document).ready(function() {
 	app.addMenuItem('⭣', moveDown, 'smallbutton');
 	app.addMenuItem('⭮', rotateCW, 'smallbutton');
 	app.addMenuItem('⭯', rotateCCW, 'smallbutton');
-	//app.addSeparator();
-	//app.addMenuItem('◐ Colours', colorPicker);
-	
+	app.addSeparator();
+	app.addMenuItem('◐ Colours', toggleColorPicker);
+	app.populateColors(paintColors, pickPaintColor, pickCanvasColor);
+	setCanvasColor(paintColors[0]);
 });
