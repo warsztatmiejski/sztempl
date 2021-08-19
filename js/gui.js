@@ -12,7 +12,8 @@ const gui = () => {
 			const paintblock = $('<div/>').attr({
 				id: `p_${color.code}`,
 				hex: color.hex,
-				title: color.name
+				title: color.name,
+				cnum: cnum
 			}).css({"background-color":color.hex})
 			.addClass('paintblock');
 			if (lefthandler) {
