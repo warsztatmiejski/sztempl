@@ -25,7 +25,8 @@ body {
 
 #main {
   clear: both;
-  width: 602px;
+  width: 585px;
+  z-index: 100;
 }
 
 .menuitem {
@@ -76,6 +77,7 @@ border: 1px solid #bdb463;
 
 .grid-stack-item {}
 
+<<<<<<< HEAD
 .grid-stack-item-content { 
   overflow: hidden !important;
   position: relative;
@@ -87,8 +89,47 @@ svg {
   height: 100%;
 }
 
+=======
+
+.grid-stack-item { 
+  overflow: hidden;
+}
+
+.grid-stack-item-content { 
+  overflow: hidden !important;
+}
+
+svg { 
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+>>>>>>> ab516cab92810e80239c45101fb670ef53e4f098
 .grid-stack-item:hover { 
   opacity: 0.8;
+}
+
+<<<<<<< HEAD
+#colorpicker {
+  position: absolute;
+  left: 470px;
+  top:34px;
+  z-index: 1000;
+  border: #6e6c53 1px solid;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #333;
+  background: #cec576;
+  padding: 8px;
+  overflow: auto;
+  display: none;
+}
+
+=======
+#canvasbox>div>svg { 
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #colorpicker {
@@ -105,6 +146,27 @@ svg {
   display: none;
 }
 
+>>>>>>> ab516cab92810e80239c45101fb670ef53e4f098
 div.paintblock:nth-child(6n+1) {
   clear: left;
+}
+
+.paintblock {
+  position: relative;
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 0 -1px -1px 0;
+  border: #000 1px solid;
+  cursor:url(eyedropper.png) 0 15, auto;
+  overflow: auto;
+}
+
+#colorpicker > hr {
+  float: left;
+  clear: both;
+  margin: 9px 0 8px 0;
+  height: 1px;
+  background-color:rgb(175, 161, 96);
+  width: 100%;
 }
