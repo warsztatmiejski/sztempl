@@ -59,7 +59,31 @@ const clearBoard = () => {
 	canvasbox.removeAll();
 }
 
-const makeTilesClickable = () => $('.grid-stack-item img')
+async function loadTiles () {
+	return await new Promise((resolve, reject) => {
+		return $.getJSON('tiles/tiles.json').done(resolve).fail(reject);
+	});
+}
+
+async function loadSVG (name) {
+	return await new Promise((resolve, reject) => {
+		const fname = `tiles/${name}.svg`;
+		return $.get(fname, null, 'xml').done(data => {
+			let $svg = jQuery(data).find('svg');
+			$svg = $svg.removeAttr('xmlns').attr({name}).attr('preserveAspectRatio', 'none');
+			resolve($svg);
+		}).fail(reject);
+	});
+}
+
+async function LoadAssets () {
+	tilesDefinition = await loadTiles();	
+	for(i in tilesDefinition) {
+		const tile = tilesDefinition[i];
+		tile.svg = await loadSVG(tile.name, i);
+	}
+	initBoard();
+}
 
 const repopulateTiles = (callback) => {
 	$.getJSON('tiles/tiles.json' , tiles => {
