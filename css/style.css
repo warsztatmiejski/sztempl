@@ -75,9 +75,6 @@ body {
 border: 1px solid #bdb463;  
 }
 
-.grid-stack-item {}
-
-<<<<<<< HEAD
 .grid-stack-item-content { 
   overflow: hidden !important;
   position: relative;
@@ -89,28 +86,10 @@ svg {
   height: 100%;
 }
 
-=======
-
-.grid-stack-item { 
-  overflow: hidden;
-}
-
-.grid-stack-item-content { 
-  overflow: hidden !important;
-}
-
-svg { 
-  pointer-events: none;
-  overflow: hidden;
-}
-
-
->>>>>>> ab516cab92810e80239c45101fb670ef53e4f098
 .grid-stack-item:hover { 
   opacity: 0.8;
 }
 
-<<<<<<< HEAD
 #colorpicker {
   position: absolute;
   left: 470px;
@@ -125,28 +104,6 @@ svg {
   display: none;
 }
 
-=======
-#canvasbox>div>svg { 
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-#colorpicker {
-  position: absolute;
-  left: 470px;
-  top:34px;
-  z-index: 1000;
-  border: #6e6c53 1px solid;
-  border-radius: 3px;
-  box-shadow: 2px 2px 2px #333;
-  background: #cec576;
-  padding: 8px;
-  overflow: auto;
-  display: none;
-}
-
->>>>>>> ab516cab92810e80239c45101fb670ef53e4f098
 div.paintblock:nth-child(6n+1) {
   clear: left;
 }
