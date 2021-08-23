@@ -45,6 +45,7 @@
     {"name": "H04", "count": 2},
     {"name": "H05", "count": 2},
     {"name": "H06", "count": 1},
-    {"name": "I01", "count": 1}
+    {"name": "I01", "count": 1},
+    {"name": "Z10", "count": 10}
 ]
     
